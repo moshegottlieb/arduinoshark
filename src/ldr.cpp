@@ -2,11 +2,11 @@
 #include "print.h"
 #include <Arduino.h>
 
-LDR::LDR(int pin,int pot):
-  InputPin(pin),_pot(pot){
+LDR::LDR(uint8_t pin,uint8_t pot):
+  AnalogPin(pin,INPUT),_pot(pot,INPUT){
 }
-int LDR::value() const {
-  int pot = _pot.analogRead();
-  int value = analogRead();
+int16_t LDR::value() const {
+  auto pot = _pot.read();
+  auto value = read();
   return value - pot;
 }

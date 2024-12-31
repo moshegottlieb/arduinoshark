@@ -2,15 +2,15 @@
 #include <Arduino.h>
 #include "print.h"
 
-LED::LED(int pin):
-    OutputPin(pin),
+LED::LED(uint8_t pin):
+    AnalogPin(pin,OUTPUT),
     _level(-1){
 
   }
   
-void LED::set(int level){
+void LED::set(int16_t level){
   if (level != _level){
     _level = level;
-    analogWrite(_level);
+    write(_level);
   }
 }

@@ -1,30 +1,35 @@
 #include "pin.h"
-#include <Arduino.h>
 
-Pin::Pin(int pin):_pin(pin){
 
+Pin::Pin(uint8_t pin,uint8_t mode):_pin(pin){
+  setMode(mode);
 }
 
-InputPin::InputPin(int pin):Pin(pin){
-    pinMode(_pin,INPUT);
+uint8_t Pin::mode() const{
+  return _mode;
+}
+void Pin::setMode(uint8_t mode){
+  _mode = mode;
+  pinMode(_pin,mode);
 }
 
-int InputPin::analogRead() const{
-    return ::analogRead(_pin);
-}
-bool InputPin::digitalRead() const{
-    return ::digitalRead(_pin) == HIGH;
+DigitalPin::DigitalPin(uint8_t pin,uint8_t mode):Pin(pin,mode){
 }
 
+bool DigitalPin::read() const{
+  ::digitalRead(_pin) == HIGH;
+}
 
-  OutputPin::OutputPin(int pin):Pin(pin){
-    pinMode(_pin,OUTPUT);
-  }
-  
-  void OutputPin::analogWrite(int level) const{
-    ::analogWrite(_pin,level);
-  }
-  
-  void OutputPin::digitalWrite(bool on) const{
-    ::digitalWrite(_pin,on ? HIGH : LOW);
-  }
+void DigitalPin::write(bool value) const{
+  ::digitalWrite(_pin,value ? HIGH : LOW);
+}
+
+AnalogPin::AnalogPin(uint8_t pin,uint8_t mode):Pin(pin,mode){
+}
+
+int16_t AnalogPin::read() const{
+  return ::analogRead(_pin);
+}
+void AnalogPin::write(int16_t value) const{
+  ::analogWrite(_pin,value);
+}

@@ -2,7 +2,7 @@
 
 #include "pin.h"
 
-class PushButton : public InputPin {
+class PushButton : public DigitalPin {
 public:
   PushButton(int pin);
   void (*buttonStateChanged)(bool);
