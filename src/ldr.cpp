@@ -5,7 +5,7 @@
 LDR::LDR(int pin,int pot):
   InputPin(pin),_pot(pot){
 }
-bool LDR::isBright() const {
+int LDR::value() const {
   int pot = _pot.analogRead();
   int value = analogRead();
   return value - pot;
