@@ -1,5 +1,4 @@
 #include "ldr.h"
-#include "print.h"
 #include <Arduino.h>
 
 LDR::LDR(uint8_t pin,uint8_t pot):
