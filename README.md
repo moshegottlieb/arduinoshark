@@ -2,7 +2,7 @@
 
 ### Simple wrappers for common usages
 
-Includes `DigitalPin`, `AnalogPin`, `LED`, `PushButton` and `LDR`.  
+Includes `DigitalPin`, `AnalogPin`, `LED`, `PushButton`, `ReedSwitch` and `LDR`.  
 See the classes for usage.  
 To use in your sketch:  
 On the main github project page, hit Code->Download ZIP  

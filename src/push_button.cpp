@@ -1,15 +1,10 @@
 #include "push_button.h"
 
 
-PushButton::PushButton(int pin):DigitalPin(pin,INPUT),buttonStateChanged(nullptr),_state(-1){
+PushButton::PushButton(int pin)
+:DigitalPin(pin,INPUT){
 }
 
-void PushButton::step(){
-  bool state = read();
-  if (state != this->_state){
-    this->_state = state;
-    if (buttonStateChanged){
-      buttonStateChanged(state);
-    }
-  }
+bool PushButton::isPressed() const{
+  return digitalRead(_pin);
 }
